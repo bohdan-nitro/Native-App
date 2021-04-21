@@ -1,8 +1,8 @@
 import React from "react";
-import {View, Text, StyleSheet} from "react-native";
+import {View, Text, StyleSheet, Button} from "react-native";
 import styled from "styled-components";
 
-export const Appointment = ({user, diagnosis, active, time}) => {
+export const Appointment = ({user, diagnosis, active, time, navigation}) => {
 
     return (
              <GroupItem>

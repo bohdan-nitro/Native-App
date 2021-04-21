@@ -1,156 +1,61 @@
-import {StatusBar} from 'expo-status-bar';
-import React from 'react';
-import {StyleSheet, Text, View, SectionList, SafeAreaView} from 'react-native';
-import styled from "styled-components";
-import {SectionTitle} from "./components";
-import {Appointment} from "./components/Appointment";
-import {Ionicons} from '@expo/vector-icons';
+import * as React from 'react';
+import {StatusBar} from "expo-status-bar";
+import { View, Text, Button } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
-export default function App() {
+import {HomeScreen} from "./screens/HomeScreen";
+import {PatientScreen} from "./screens/PatientScreen";
 
-    const DATA = [
-        {
-            title: "14 сентября",
-            data: [
-                {
-                    time: "15:30",
-                    active: true,
-                    diagnosis: "Estoy Anassesito",
-                    user: {
-                        fullName: "Bohdan Mogdan",
-                        avatar: "https://media-exp1.licdn.com/dms/image/C4E03AQHEYn1CrTtDjA/profile-displayphoto-shrink_200_200/0/1617989591450?e=1624492800&v=beta&t=4ZDbgchKLJZiOF8aP1QO69Fn3fMnWF9cDE4N_bm45Uk"
-                    },
-                },
-                {
-                    time: "13:30",
-                    diagnosis: "Estino Partino",
-                    user: {
-                        fullName: "Nosit Trento",
-                        avatar: "https://media-exp1.licdn.com/dms/image/C4E03AQGbJ5w4q0ZGqQ/profile-displayphoto-shrink_200_200/0/1617882629444?e=1624492800&v=beta&t=WfSvS1D_TkWdZumgyPQwNRtoCcPB07PpJey_jhSGf38"
-                    },
-                }
-            ],
-        },
-        {
-            title: "18 сентября",
-            data: [
-                {
-                    time: "15:30",
-                    diagnosis: "Estoy Anassesito",
-                    user: {
-                        fullName: "Sergio Barea",
-                        avatar: "https://instagram.fiev13-1.fna.fbcdn.net/v/t51.2885-19/s150x150/26864411_209228126302473_6776663476245889024_n.jpg?tp=1&_nc_ht=instagram.fiev13-1.fna.fbcdn.net&_nc_ohc=NW-BIhT2HVoAX8iOi7z&edm=ABfd0MgAAAAA&ccb=7-4&oh=f39afe408e423b93151ba001a43f0504&oe=60A4D12C&_nc_sid=7bff83"
-                    },
-                },
-                {
-                    time: "13:30",
-                    diagnosis: "Estino Partino",
-                    user: {
-                        fullName: "Nosit Trento",
-                        avatar: "https://media-exp1.licdn.com/dms/image/C4E03AQGbJ5w4q0ZGqQ/profile-displayphoto-shrink_200_200/0/1617882629444?e=1624492800&v=beta&t=WfSvS1D_TkWdZumgyPQwNRtoCcPB07PpJey_jhSGf38"
-                    },
-                },
-                {
-                    time: "10:30",
-                    diagnosis: "Estoy Anassesito",
-                    user: {
-                        fullName: "Antonio McDays",
-                        avatar: "https://instagram.fiev13-1.fna.fbcdn.net/v/t51.2885-19/s150x150/22157944_877114922437466_93710018825682944_n.jpg?tp=1&_nc_ht=instagram.fiev13-1.fna.fbcdn.net&_nc_ohc=my1JO45vG6sAX8l_mMW&edm=ABfd0MgAAAAA&ccb=7-4&oh=dcfc3859168ae8ba09f157989ed7c604&oe=60A587E0&_nc_sid=7bff83"
-                    },
-                },
-                {
-                    time: "19:30",
-                    diagnosis: "Estino Partino",
-                    user: {
-                        fullName: "Nosit Trento",
-                        avatar: "https://media-exp1.licdn.com/dms/image/C4E03AQGbJ5w4q0ZGqQ/profile-displayphoto-shrink_200_200/0/1617882629444?e=1624492800&v=beta&t=WfSvS1D_TkWdZumgyPQwNRtoCcPB07PpJey_jhSGf38"
-                    },
-                },
-                {
-                    time: "10:30",
-                    diagnosis: "Estoy Anassesito",
-                    user: {
-                        fullName: "Antonio McDays",
-                        avatar: "https://instagram.fiev13-1.fna.fbcdn.net/v/t51.2885-19/s150x150/22157944_877114922437466_93710018825682944_n.jpg?tp=1&_nc_ht=instagram.fiev13-1.fna.fbcdn.net&_nc_ohc=my1JO45vG6sAX8l_mMW&edm=ABfd0MgAAAAA&ccb=7-4&oh=dcfc3859168ae8ba09f157989ed7c604&oe=60A587E0&_nc_sid=7bff83"
-                    },
-                },
-                {
-                    time: "19:30",
-                    diagnosis: "Estino Partino",
-                    user: {
-                        fullName: "Nosit Trento",
-                        avatar: "https://media-exp1.licdn.com/dms/image/C4E03AQGbJ5w4q0ZGqQ/profile-displayphoto-shrink_200_200/0/1617882629444?e=1624492800&v=beta&t=WfSvS1D_TkWdZumgyPQwNRtoCcPB07PpJey_jhSGf38"
-                    },
-                },
-                {
-                    time: "10:30",
-                    diagnosis: "Estoy Anassesito",
-                    user: {
-                        fullName: "Antonio McDays",
-                        avatar: "https://instagram.fiev13-1.fna.fbcdn.net/v/t51.2885-19/s150x150/22157944_877114922437466_93710018825682944_n.jpg?tp=1&_nc_ht=instagram.fiev13-1.fna.fbcdn.net&_nc_ohc=my1JO45vG6sAX8l_mMW&edm=ABfd0MgAAAAA&ccb=7-4&oh=dcfc3859168ae8ba09f157989ed7c604&oe=60A587E0&_nc_sid=7bff83"
-                    },
-                },
-                {
-                    time: "19:30",
-                    diagnosis: "Estino Partino",
-                    user: {
-                        fullName: "Nosit Trento",
-                        avatar: "https://media-exp1.licdn.com/dms/image/C4E03AQGbJ5w4q0ZGqQ/profile-displayphoto-shrink_200_200/0/1617882629444?e=1624492800&v=beta&t=WfSvS1D_TkWdZumgyPQwNRtoCcPB07PpJey_jhSGf38"
-                    },
-                }
-            ],
-        },
-
-
-    ]
-
+function DetailsScreen({ navigation }) {
     return (
-        <Container>
-            <SafeAreaView>
-                <SectionList
-                    sections={DATA}
-                    keyExtractor={(item, index) => index}
-                    renderItem={({item}) => <Appointment {...item} />}
-                    renderSectionHeader={({section: {title}}) => (
-                        <SectionTitle>{title}</SectionTitle>
-                    )}
-                />
-                <PlusButton>
-                    <Ionicons name="ios-add" size={34} color="white"/>
-                </PlusButton>
-            </SafeAreaView>
-            <StatusBar style="auto"/>
-        </Container>
-
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+            <Text>Details Screen</Text>
+            <Button
+                title="Go to Details... again"
+                onPress={() => navigation.navigate('Details')}
+            />
+        </View>
     );
 }
-const Container = styled.View`
-flex: 1;
-margin-top: 30px;
-background: #2b2727
-`;
 
-const PlusButton = styled.TouchableOpacity`
-border-radius: 50px
-width: 64px;
-height: 64px;
-background: #de190b;
-align-items: center;
-justify-content: center;
-position: absolute;
-bottom: 20px
-right: 20px
-shadow-color: #fff;                   
-shadow-opacity: 0.7;
-shadow-radius: 3.5;
-elevation: 5;
-`
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-});
+ function Patient(){
+    return (
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+            <Text>Details Screen</Text>
+        </View>
+    )
+}
+
+
+
+const Stack = createStackNavigator();
+
+export default function App() {
+    return (
+        <NavigationContainer>
+            <Stack.Navigator initialRouteName={"Home"}>
+                <Stack.Screen
+                    name="Home"
+                    component={HomeScreen}
+                    options={{
+                        title: 'Home',
+                        headerStyle: {
+                            backgroundColor: '#de190b',
+                            elevation: 0.5
+                        },
+                        headerTintColor: '#fff',
+                        headerTitleStyle: {
+                            fontWeight: 'bold',
+                        },
+                    }}
+                />
+                <Stack.Screen
+                    name="Details"
+                    component={Patient}
+                />
+            </Stack.Navigator>
+        </NavigationContainer>
+    );
+}
