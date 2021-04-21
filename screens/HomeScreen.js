@@ -3,6 +3,7 @@ import {Button, SafeAreaView, SectionList, View} from "react-native";
 import {Appointment} from "../components/Appointment";
 import {SectionTitle} from "../components";
 import {Ionicons} from "@expo/vector-icons";
+import {StatusBar} from "expo-status-bar";
 import styled from "styled-components";
 
 const DATA = [
@@ -109,7 +110,7 @@ export class HomeScreen extends React.Component {
                     <SectionList
                         sections={DATA}
                         keyExtractor={(item, index) => index}
-                        renderItem={({item}) => <Appointment navigation={navigation.navigate} {...item} />}
+                        renderItem={({item}) => <Appointment navigate={navigation.navigate} {...item} />}
                         renderSectionHeader={({section: {title}}) => (
                             <SectionTitle>{title}</SectionTitle>
                         )}

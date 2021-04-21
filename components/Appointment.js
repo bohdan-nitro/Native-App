@@ -2,10 +2,10 @@ import React from "react";
 import {View, Text, StyleSheet, Button} from "react-native";
 import styled from "styled-components";
 
-export const Appointment = ({user, diagnosis, active, time, navigation}) => {
+export const Appointment = ({user, diagnosis, active, time, navigate}) => {
 
     return (
-             <GroupItem>
+             <GroupItem onPress={() => navigate("Details")}>
                 <Avatar source={{
                     uri: user.avatar
                 }}/>
