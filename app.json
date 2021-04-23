@@ -27,6 +27,8 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "description": "React-Native Project",
+    "githubUrl": "https://github.com/bohdan-nitro/"
   }
 }

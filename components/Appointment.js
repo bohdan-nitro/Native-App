@@ -1,11 +1,12 @@
 import React from "react";
 import {View, Text, StyleSheet, Button} from "react-native";
 import styled from "styled-components";
+import Badge from "./Badge";
 
-export const Appointment = ({user, diagnosis, active, time, navigate}) => {
-
+export const Appointment = ({ navigate, item}) => {
+const {user, diagnosis, active, time,} = item;
     return (
-             <GroupItem onPress={() => navigate("Details")}>
+             <GroupItem onPress={() => navigate("Details", item)}>
                 <Avatar source={{
                     uri: user.avatar
                 }}/>
@@ -13,7 +14,7 @@ export const Appointment = ({user, diagnosis, active, time, navigate}) => {
                     <FullName>{user.fullName}</FullName>
                     <GrayText>{diagnosis}</GrayText>
                 </View>
-                <GroupTime active={active}>{time}</GroupTime>
+                <Badge active={active}>{time}</Badge>
             </GroupItem>
     );
 }
@@ -42,10 +43,8 @@ margin-right: 15px;
 `
 
     const FullName = styled.Text`
-    color: #fff
-font-weight: 600;
-font-size: 16px
-font-weight: 700
+    color: #fff;
+font-weight: 700;
 `
 
     const GrayText = styled.Text`
@@ -53,19 +52,6 @@ font-size: 16px;
 color: #adacac;
 `
 
-    const GroupTime = styled.Text`
-background: ${props => props.active ? "#de190b" : "#696969"};
-border-radius: 10px;
-color: #fff;
-font-weight: 700;
-font-size: 14px;
-width: 70px;
-height: 30px
-text-align: center;
-line-height: 28px;
-border-bottom-width: 1px;
-border-bottom-color: #696969;
-`
 
 const styles = StyleSheet.create({
         container: {

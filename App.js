@@ -19,7 +19,8 @@ export default function App() {
                         title: 'Home',
                         headerStyle: {
                             backgroundColor: '#de190b',
-                            elevation: 0.5
+                            elevation: 0.8,
+                            shadowOpacity: 0.8
                         },
                         headerTintColor: '#fff',
                         headerTitleStyle: {
@@ -31,10 +32,11 @@ export default function App() {
                     name="Details"
                     component={PatientScreen}
                     options={{
-                        title: 'Home',
+                        title: 'Clients',
                         headerStyle: {
                             backgroundColor: '#de190b',
-                            elevation: 0.5
+                            elevation: 0.8,
+                            shadowOpacity: 0.8
                         },
                         headerTintColor: '#fff',
                         headerTitleStyle: {
